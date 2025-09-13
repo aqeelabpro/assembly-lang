@@ -1,0 +1,8 @@
+     1                                  [org 0x0100]
+     2 00000000 B80000                  mov ax, 0
+     3 00000003 BB0500                  mov bx, 5
+     4 00000006 01D8                    add ax, bx
+     5 00000008 BB0100                  mov bx, 1
+     6 0000000B 01D8                    add ax, bx
+     7 0000000D B8004C                  mov ax, 0x4c00
+     8 00000010 CD21                    int 0x21

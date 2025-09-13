@@ -1,0 +1,140 @@
+     1                                  [org 0x0100]
+     2                                  
+     3                                  ; ---------------------------------
+     4                                  ; x86 comparison examples
+     5                                  ; all comments in lowercase
+     6                                  ; jump labels at the end
+     7                                  ; ---------------------------------
+     8                                  
+     9                                  ; -------------------------------
+    10                                  ; unsigned comparison examples
+    11                                  ; ja  - jump if above (cf=0 & zf=0)
+    12                                  ; jb  - jump if smaller (cf=1)
+    13                                  ; jae - jump if above or equal (cf=0)
+    14                                  ; jbe - jump if smaller or equal (cf=1 or zf=1)
+    15                                  ; je  - jump if equal (zf=1)
+    16                                  ; jne - jump if not equal (zf=0)
+    17                                  ; -------------------------------
+    18                                  
+    19                                  ; ---- ja example ----
+    20 00000000 B80500                  mov ax,5
+    21 00000003 BB0300                  mov bx,3
+    22 00000006 39D8                    cmp ax,bx
+    23 00000008 777A                    ja above5_3
+    24 0000000A 90                      nop
+    25                                  
+    26                                  ; ---- jb example ----
+    27 0000000B B80300                  mov ax,3
+    28 0000000E BB0500                  mov bx,5
+    29 00000011 39D8                    cmp ax,bx
+    30 00000013 7270                    jb smaller3_5
+    31 00000015 90                      nop
+    32                                  
+    33                                  ; ---- jbe example ----
+    34 00000016 B80300                  mov ax,3
+    35 00000019 BB0500                  mov bx,5
+    36 0000001C 39D8                    cmp ax,bx
+    37 0000001E 7666                    jbe smallerOrEqual3_5
+    38 00000020 90                      nop
+    39                                  
+    40                                  ; ---- jae example ----
+    41 00000021 B80500                  mov ax,5
+    42 00000024 BB0500                  mov bx,5
+    43 00000027 39D8                    cmp ax,bx
+    44 00000029 735C                    jae aboveOrEqual5_5
+    45 0000002B 90                      nop
+    46                                  
+    47                                  ; ---- je example ----
+    48 0000002C B80500                  mov ax,5
+    49 0000002F BB0500                  mov bx,5
+    50 00000032 39D8                    cmp ax,bx
+    51 00000034 7452                    je equal5_5
+    52 00000036 90                      nop
+    53                                  
+    54                                  ; ---- jne example ----
+    55 00000037 B80500                  mov ax,5
+    56 0000003A BB0300                  mov bx,3
+    57 0000003D 39D8                    cmp ax,bx
+    58 0000003F 7548                    jne notEqual5_3
+    59 00000041 90                      nop
+    60                                  
+    61                                  ; -------------------------------
+    62                                  ; signed comparison examples
+    63                                  ; jg  - jump if greater (signed)
+    64                                  ; jl  - jump if smaller (signed)
+    65                                  ; jge - jump if greater or equal (signed)
+    66                                  ; jle - jump if smaller or equal (signed)
+    67                                  ; je  - jump if equal (zf=1)
+    68                                  ; jne - jump if not equal (zf=0)
+    69                                  ; -------------------------------
+    70                                  
+    71                                  ; ---- jg example ----
+    72 00000042 B80500                  mov ax,5
+    73 00000045 BB0300                  mov bx,3
+    74 00000048 39D8                    cmp ax,bx
+    75 0000004A 7F3E                    jg signedGreater5_3
+    76 0000004C 90                      nop
+    77                                  
+    78                                  ; ---- jl example ----
+    79 0000004D B8FBFF                  mov ax,-5
+    80 00000050 BB0300                  mov bx,3
+    81 00000053 39D8                    cmp ax,bx
+    82 00000055 7C34                    jl signedSmallerMinus5_3
+    83 00000057 90                      nop
+    84                                  
+    85                                  ; ---- jge example ----
+    86 00000058 B80500                  mov ax,5
+    87 0000005B BB0500                  mov bx,5
+    88 0000005E 39D8                    cmp ax,bx
+    89 00000060 7D2A                    jge signedGreaterOrEqual5_5
+    90 00000062 90                      nop
+    91                                  
+    92                                  ; ---- jle example ----
+    93 00000063 B8FBFF                  mov ax,-5
+    94 00000066 BB0300                  mov bx,3
+    95 00000069 39D8                    cmp ax,bx
+    96 0000006B 7E20                    jle signedSmallerOrEqualMinus5_3
+    97 0000006D 90                      nop
+    98                                  
+    99                                  ; ---- je example ----
+   100 0000006E B80500                  mov ax,5
+   101 00000071 BB0500                  mov bx,5
+   102 00000074 39D8                    cmp ax,bx
+   103 00000076 7416                    je signedEqual5_5
+   104 00000078 90                      nop
+   105                                  
+   106                                  ; ---- jne example ----
+   107 00000079 B80500                  mov ax,5
+   108 0000007C BB0300                  mov bx,3
+   109 0000007F 39D8                    cmp ax,bx
+   110 00000081 750C                    jne signedNotEqual5_3
+   111 00000083 90                      nop
+   112                                  
+   113                                  ; ---------------------------------
+   114                                  ; jump labels/data at end
+   115                                  ; ---------------------------------
+   116                                  
+   117                                  above5_3:
+   118 00000084 90                          nop
+   119                                  smaller3_5:
+   120 00000085 90                          nop
+   121                                  smallerOrEqual3_5:
+   122 00000086 90                          nop
+   123                                  aboveOrEqual5_5:
+   124 00000087 90                          nop
+   125                                  equal5_5:
+   126 00000088 90                          nop
+   127                                  notEqual5_3:
+   128 00000089 90                          nop
+   129                                  signedGreater5_3:
+   130 0000008A 90                          nop
+   131                                  signedSmallerMinus5_3:
+   132 0000008B 90                          nop
+   133                                  signedGreaterOrEqual5_5:
+   134 0000008C 90                          nop
+   135                                  signedSmallerOrEqualMinus5_3:
+   136 0000008D 90                          nop
+   137                                  signedEqual5_5:
+   138 0000008E 90                          nop
+   139                                  signedNotEqual5_3:
+   140 0000008F 90                          nop
